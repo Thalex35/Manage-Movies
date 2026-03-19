@@ -10,6 +10,7 @@ import hunter from "../assets/hunter.jpeg";
 import tokyo from "../assets/tokyo.jpeg";
 import onepunch from "../assets/onepunch.jpeg";
 import bluelock from "../assets/bluelock.jpeg";
+import allanime from "../assets/allanime.jpeg";
 
 export const animesData = [
   {
