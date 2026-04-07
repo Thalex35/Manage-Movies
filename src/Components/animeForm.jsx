@@ -57,13 +57,6 @@ export default function animeForm({
     return data;
   }
 
-  // const statut = data.reduce((acc, item) => {
-  //   if (!acc.includes(item.statut)) {
-  //     acc.push(item.statut);
-  //   }
-  //   return acc;
-  // });
-
   return (
     <div className="fonctionalite">
       <div className="mesSelect">
@@ -72,7 +65,7 @@ export default function animeForm({
           value={selectedGenre}
           onChange={(e) => onGenreChange(e.target.value)}
         >
-          <option value="">---</option>
+          <option value="">Tous les genres</option>
           {toFilter(data, "genre").map((gen, i) => (
             <option key={i} value={gen}>
               {gen}
@@ -83,7 +76,7 @@ export default function animeForm({
           value={selectedStatut}
           onChange={(e) => onStatutChange(e.target.value)}
         >
-          <option value="">---</option>
+          <option value="">Tous les statuts</option>
           {toFilter(data, "statut").map((stat, i) => (
             <option key={i} value={stat}>
               {stat}
@@ -126,18 +119,24 @@ export default function animeForm({
           />
           <br />
           <label htmlFor="">STATUT</label>
-          <input
-            type="text"
-            placeholder="Son statut..."
+          <select
+            className="selectStatut"
             name="statut"
             onChange={handleChange}
             value={formData.statut}
             required
-          />
+          >
+            <option value="">Statut de l'anime</option>
+            <option value="En cours">En cours</option>
+            <option value="Terminé">Terminé</option>
+            <option value="Abandonné">A voir</option>
+          </select>
           <Import />
           <br />
         </div>
-        <button type="submit">Ajoutez</button>
+        <button className="btnAdd" type="submit">
+          + Ajoutez
+        </button>
       </form>
     </div>
   );
@@ -146,7 +145,13 @@ export default function animeForm({
 function Import() {
   return (
     <>
-      <input id="inputfile" type="file" accept="image/*" />
+      <input
+        id="inputfile"
+        type="file"
+        accept="image/*"
+        style={{ display: "none" }}
+        required
+      />
       <label className="import" htmlFor="inputfile">
         Importer l'image
       </label>

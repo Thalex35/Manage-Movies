@@ -21,18 +21,22 @@ export default function App() {
   };
 
   return (
-    <div>
+    <div className="thePage">
       <Banner />
       <div className="body">
-        <AnimeCard animes={filterAnime} />
-        <AnimeForm
-          data={animes}
-          onAddAnime={handleAddAnime}
-          selectedGenre={selectedGenre}
-          onGenreChange={setSelectedGenre}
-          selectedStatut={selectedStatut}
-          onStatutChange={setSelectedStatut}
-        />
+        <div className="animecard">
+          <AnimeCard animes={filterAnime} />
+        </div>
+        <div className="functions">
+          <AnimeForm
+            data={animes}
+            onAddAnime={handleAddAnime}
+            selectedGenre={selectedGenre}
+            onGenreChange={setSelectedGenre}
+            selectedStatut={selectedStatut}
+            onStatutChange={setSelectedStatut}
+          />
+        </div>
       </div>
     </div>
   );
