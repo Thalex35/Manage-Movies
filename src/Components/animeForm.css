@@ -4,16 +4,26 @@
   gap: 5px;
 }
 
+.functionalite {
+  width: 100%;
+}
+
 input {
   padding: 10px;
   border-radius: 10px;
+}
+
+label {
+  font-weight: 600;
 }
 
 .import {
   border: 1px solid gray;
   display: flex;
   padding: 10px;
-  align-items: center;
+  margin: auto;
+  width: 120px;
+  border-radius: 10px;
 }
 
 .mesSelect {
@@ -25,5 +35,22 @@ input {
 .mesSelect select {
   padding: 10px;
   border-radius: 10px;
-  width: 120px;
+  width: 100%;
+  font-weight: bold;
+}
+
+.btnAdd {
+  padding: 10px;
+  display: block;
+  text-align: center;
+  border-radius: 10px;
+  width: 80%;
+  margin: auto;
+}
+
+.selectStatut {
+  padding: 10px;
+  border: 2px solid gray;
+  border-radius: 10px;
+  color: gray;
 }

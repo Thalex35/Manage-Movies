@@ -1,5 +1,7 @@
 .card {
   border: 1px solid gray;
+  border-top: 4px solid rgb(112, 204, 112);
+  border-radius: 20px;
   max-width: 100%;
   padding: 20px;
 }
@@ -8,4 +10,8 @@ img {
   width: 200px;
   height: auto;
   object-fit: cover;
+}
+
+.before {
+  font-weight: bold;
 }
