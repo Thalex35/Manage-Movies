@@ -8,12 +8,14 @@ import "./App.css";
 export default function App() {
   const [animes, setAnimes] = useState(animesData);
   const [selectedGenre, setSelectedGenre] = useState("");
+  const [selectedStatut, setSelectedStatut] = useState("");
 
-  const filteredList =
-    selectedGenre === ""
-      ? animes
-      : animes.filter((anime) => anime.genre === selectedGenre);
-
+  const filterAnime = animes.filter((anime) => {
+    const matchGenre = selectedGenre === "" || anime.genre === selectedGenre;
+    const matchStatut =
+      selectedStatut === "" || anime.statut === selectedStatut;
+    return matchGenre && matchStatut;
+  });
   const handleAddAnime = (newAnime) => {
     setAnimes((prev) => [...prev, newAnime]);
   };
@@ -22,12 +24,14 @@ export default function App() {
     <div>
       <Banner />
       <div className="body">
-        <AnimeCard animes={filteredList} />
+        <AnimeCard animes={filterAnime} />
         <AnimeForm
-          genres={animes}
+          data={animes}
           onAddAnime={handleAddAnime}
           selectedGenre={selectedGenre}
           onGenreChange={setSelectedGenre}
+          selectedStatut={selectedStatut}
+          onStatutChange={setSelectedStatut}
         />
       </div>
     </div>
