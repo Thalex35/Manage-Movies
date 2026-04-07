@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
+import "./animeForm.css";
 
-export default function Form({ genres, onAddAnime }) {
+export default function animeForm({
+  genres,
+  onAddAnime,
+  selectedGenre,
+  onGenreChange,
+}) {
   const [formData, setFormData] = useState({
     titre: "",
     genre: "",
@@ -18,18 +24,18 @@ export default function Form({ genres, onAddAnime }) {
   };
 
   useEffect(() => {
-    localStorage.setItem("Film_info", JSON.stringify(formData));
+    localStorage.setItem("Movie_info", JSON.stringify(formData));
   }, [formData]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const newAnime = {
+      cover: formData.cover,
       titre: formData.titre,
       genre: formData.genre,
       episodes: Number(formData.episode),
       statut: formData.statut,
-      cover: formData.cover,
     };
 
     onAddAnime(newAnime);
@@ -47,54 +53,77 @@ export default function Form({ genres, onAddAnime }) {
   }, []);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>Want to add a new anime ? </h3>
-      <input
-        type="text"
-        placeholder="Son titre..."
-        name="titre"
-        onChange={handleChange}
-        value={formData.titre}
-        required
-      />
-      <br />
-      <input
-        type="text"
-        placeholder="Son genre..."
-        name="genre"
-        onChange={handleChange}
-        value={formData.genre}
-        required
-      />
-      <br />
-      <input
-        type="text"
-        placeholder="Son nombre d'episode..."
-        name="episode"
-        onChange={handleChange}
-        value={formData.episode}
-        required
-      />
-      <br />
-      <input
-        type="text"
-        placeholder="Son statut..."
-        name="statut"
-        onChange={handleChange}
-        value={formData.statut}
-        required
-      />
-
-      <button name="import" value={formData.cover}>
-        Importer
-      </button>
-      <button type="submit">Ajoutez</button>
-      <select>
-        <option>---</option>
+    <div className="fonctionalite">
+      <p>filtrer par genre</p>
+      <select
+        value={selectedGenre}
+        onChange={(e) => onGenreChange(e.target.value)}
+      >
+        <option value="">---</option>
         {genre.map((gnr, i) => (
-          <option key={i}>{gnr}</option>
+          <option key={i} value={gnr}>
+            {gnr}
+          </option>
         ))}
       </select>
-    </form>
+      <form onSubmit={handleSubmit}>
+        <h3>Want to add a new anime ? </h3>
+        <div className="inputs">
+          <label htmlFor="">TITRE</label>
+          <input
+            type="text"
+            placeholder="Son titre..."
+            name="titre"
+            onChange={handleChange}
+            value={formData.titre}
+            required
+          />
+          <br />
+          <label htmlFor="">GENRE</label>
+          <input
+            type="text"
+            placeholder="Son genre..."
+            name="genre"
+            onChange={handleChange}
+            value={formData.genre}
+            required
+          />
+          <br />
+          <label htmlFor="">EPISODE</label>
+          <input
+            type="text"
+            placeholder="Son nombre d'episode..."
+            name="episode"
+            onChange={handleChange}
+            value={formData.episode}
+            required
+          />
+          <br />
+          <label htmlFor="">STATUT</label>
+          <input
+            type="text"
+            placeholder="Son statut..."
+            name="statut"
+            onChange={handleChange}
+            value={formData.statut}
+            required
+          />
+          <Import />
+          <br />
+        </div>
+        <button type="submit">Ajoutez</button>
+      </form>
+    </div>
+  );
+}
+
+function Import() {
+  return (
+    <>
+      <input id="inputfile" type="file" accept="image/*" />
+      <label className="import" htmlFor="inputfile">
+        Importer l'image
+      </label>
+    </>
   );
 }

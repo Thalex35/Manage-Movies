@@ -5,15 +5,7 @@
 }
 
 img {
-  width: 300px;
-  height: 200px;
-}
-
-.card h1{
-  font-size: 1.3em;
-}
-
-.att{
-  font-weight: bold;
-  font-size: 1em;
+  width: 200px;
+  height: auto;
+  object-fit: cover;
 }

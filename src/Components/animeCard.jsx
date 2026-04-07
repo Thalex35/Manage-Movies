@@ -4,7 +4,6 @@ import AnimeList from "./animeList.jsx";
 export default function AnimeCard({ animes }) {
   return (
     <div>
-      <h1>Mon list d'anime</h1>
       <div className="cards">
         {animes.map((anime) => (
           <AnimeList

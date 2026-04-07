@@ -1,0 +1,12 @@
+.nav {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  border-bottom: 3px solid rgb(108, 226, 232);
+  margin-bottom: 30px;
+}
+
+.logo {
+  font-size: 2em;
+  font-weight: bold;
+}

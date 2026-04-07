@@ -1,0 +1,17 @@
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+input {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.import {
+  border: 1px solid gray;
+  display: flex;
+  padding: 10px;
+  align-items: center;
+}

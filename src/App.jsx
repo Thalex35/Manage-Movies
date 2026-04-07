@@ -1,19 +1,35 @@
-import AnimeCard from "./Components/animeCard";
-import AnimeForm from "./Components/animeForm";
 import { animesData } from "./Data/animesData";
 import { useState } from "react";
+import AnimeCard from "./Components/animeCard";
+import AnimeForm from "./Components/animeForm";
+import Banner from "./Components/Banner";
 import "./App.css";
 
 export default function App() {
-  const [animes, setAnime] = useState(animesData);
+  const [animes, setAnimes] = useState(animesData);
+  const [selectedGenre, setSelectedGenre] = useState("");
+
+  const filteredList =
+    selectedGenre === ""
+      ? animes
+      : animes.filter((anime) => anime.genre === selectedGenre);
 
   const handleAddAnime = (newAnime) => {
-    setAnime((prev) => [...prev, newAnime]);
+    setAnimes((prev) => [...prev, newAnime]);
   };
+
   return (
     <div>
-      <AnimeCard animes={animes} />
-      <AnimeForm genres={animes} onAddAnime={handleAddAnime} />
+      <Banner />
+      <div className="body">
+        <AnimeCard animes={filteredList} />
+        <AnimeForm
+          genres={animes}
+          onAddAnime={handleAddAnime}
+          selectedGenre={selectedGenre}
+          onGenreChange={setSelectedGenre}
+        />
+      </div>
     </div>
   );
 }
