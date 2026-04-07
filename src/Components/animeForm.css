@@ -15,3 +15,15 @@ input {
   padding: 10px;
   align-items: center;
 }
+
+.mesSelect {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mesSelect select {
+  padding: 10px;
+  border-radius: 10px;
+  width: 120px;
+}

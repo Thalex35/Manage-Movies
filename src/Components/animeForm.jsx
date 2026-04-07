@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import "./animeForm.css";
 
 export default function animeForm({
-  genres,
+  data,
   onAddAnime,
   selectedGenre,
   onGenreChange,
+  selectedStatut,
+  onStatutChange,
 }) {
   const [formData, setFormData] = useState({
     titre: "",
@@ -45,29 +47,53 @@ export default function animeForm({
     alert("your data has been submitted successfully");
   };
 
-  const genre = genres.reduce((acc, item) => {
-    if (!acc.includes(item.genre)) {
-      acc.push(item.genre);
-    }
-    return acc;
-  }, []);
+  function toFilter(myData, characteristic) {
+    const data = myData.reduce((acc, item) => {
+      if (!acc.includes(item[characteristic])) {
+        acc.push(item[characteristic]);
+      }
+      return acc;
+    }, []);
+    return data;
+  }
+
+  // const statut = data.reduce((acc, item) => {
+  //   if (!acc.includes(item.statut)) {
+  //     acc.push(item.statut);
+  //   }
+  //   return acc;
+  // });
 
   return (
     <div className="fonctionalite">
-      <p>filtrer par genre</p>
-      <select
-        value={selectedGenre}
-        onChange={(e) => onGenreChange(e.target.value)}
-      >
-        <option value="">---</option>
-        {genre.map((gnr, i) => (
-          <option key={i} value={gnr}>
-            {gnr}
-          </option>
-        ))}
-      </select>
+      <div className="mesSelect">
+        <h2>Filtrer par genre et statut</h2>
+        <select
+          value={selectedGenre}
+          onChange={(e) => onGenreChange(e.target.value)}
+        >
+          <option value="">---</option>
+          {toFilter(data, "genre").map((gen, i) => (
+            <option key={i} value={gen}>
+              {gen}
+            </option>
+          ))}
+        </select>
+        <select
+          value={selectedStatut}
+          onChange={(e) => onStatutChange(e.target.value)}
+        >
+          <option value="">---</option>
+          {toFilter(data, "statut").map((stat, i) => (
+            <option key={i} value={stat}>
+              {stat}
+            </option>
+          ))}
+        </select>
+      </div>
+
       <form onSubmit={handleSubmit}>
-        <h3>Want to add a new anime ? </h3>
+        <h2>Ajouter un nouveau anime </h2>
         <div className="inputs">
           <label htmlFor="">TITRE</label>
           <input
