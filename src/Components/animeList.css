@@ -6,7 +6,7 @@
   padding: 20px;
 }
 
-img {
+.anime_cover {
   width: 200px;
   height: auto;
   object-fit: cover;

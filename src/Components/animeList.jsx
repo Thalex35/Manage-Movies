@@ -18,7 +18,7 @@ export default function AnimeList({
       <h3>{titre}</h3>
 
       <div>
-        <img src={cover || defaultCover}></img>
+        <img className="anime_cover" src={cover || defaultCover}></img>
         <p>
           <span className="before">Genre</span> : {genre}
         </p>
