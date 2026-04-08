@@ -1,14 +1,21 @@
 import { animesData } from "./Data/animesData";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AnimeCard from "./Components/animeCard";
 import AnimeForm from "./Components/animeForm";
 import Banner from "./Components/Banner";
 import "./App.css";
 
 export default function App() {
-  const [animes, setAnimes] = useState(animesData);
+  const [animes, setAnimes] = useState(() => {
+    const savedAnime = localStorage.getItem("animes");
+    return savedAnime ? JSON.parse(savedAnime) : animesData;
+  });
   const [selectedGenre, setSelectedGenre] = useState("");
   const [selectedStatut, setSelectedStatut] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("animes", JSON.stringify(animes));
+  }, [animes]);
 
   const filterAnime = animes.filter((anime) => {
     const matchGenre = selectedGenre === "" || anime.genre === selectedGenre;

@@ -24,7 +24,6 @@ export default function animeForm({
       ...previous,
       [event.target.name]: event.target.value,
     }));
-    console.log(formData);
   };
 
   const handleCoverChange = (e) => {
@@ -38,10 +37,6 @@ export default function animeForm({
 
     console.log(formData.cover);
   };
-
-  useEffect(() => {
-    localStorage.setItem("Movie_info", JSON.stringify(formData));
-  }, [formData]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
