@@ -27,6 +27,18 @@ export default function animeForm({
     console.log(formData);
   };
 
+  const handleCoverChange = (e) => {
+    const file = e.target.files[0];
+
+    if (!file) return;
+
+    const imageUrl = URL.createObjectURL(file);
+
+    setFormData((prev) => ({ ...prev, cover: imageUrl }));
+
+    console.log(formData.cover);
+  };
+
   useEffect(() => {
     localStorage.setItem("Movie_info", JSON.stringify(formData));
   }, [formData]);
@@ -141,7 +153,19 @@ export default function animeForm({
             <option value="Terminé">Terminé</option>
             <option value="Abandonné">A voir</option>
           </select>
-          <Import />
+          <div>
+            <input
+              id="inputfile"
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }}
+              required
+              onChange={handleCoverChange}
+            />
+            <label className="import" htmlFor="inputfile">
+              Importer l'image
+            </label>
+          </div>
           <br />
         </div>
         <button className="btnAdd" type="submit">
@@ -149,22 +173,5 @@ export default function animeForm({
         </button>
       </form>
     </div>
-  );
-}
-
-function Import() {
-  return (
-    <>
-      <input
-        id="inputfile"
-        type="file"
-        accept="image/*"
-        style={{ display: "none" }}
-        required
-      />
-      <label className="import" htmlFor="inputfile">
-        Importer l'image
-      </label>
-    </>
   );
 }
