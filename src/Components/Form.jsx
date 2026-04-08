@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 
 export default function AnimeForm() {
-  const [formData, setFormData] = useState({ nom: "", email: "" });
+  const [formData, setFormData] = useState(() => {
+    const saved = localStorage.getItem("State");
+    return saved ? JSON.parse(saved) : { nom: "", email: "" };
+  });
 
   const handleChange = (event) => {
     setFormData((previous) => ({
@@ -12,7 +15,7 @@ export default function AnimeForm() {
   };
 
   useEffect(() => {
-    localStorage.setItem("User_info", JSON.stringify(formData));
+    localStorage.setItem("State", JSON.stringify(formData));
   }, [formData]);
 
   const handleSubmit = (event) => {
