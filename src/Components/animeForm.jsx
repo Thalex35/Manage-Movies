@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./animeForm.css";
+import { nanoid } from "nanoid";
 
 export default function animeForm({
   data,
@@ -10,6 +11,7 @@ export default function animeForm({
   onStatutChange,
 }) {
   const [formData, setFormData] = useState({
+    id: "",
     titre: "",
     genre: "",
     episode: "",
@@ -33,6 +35,7 @@ export default function animeForm({
     event.preventDefault();
 
     const newAnime = {
+      id: nanoid(),
       cover: formData.cover,
       titre: formData.titre,
       genre: formData.genre,
@@ -43,7 +46,14 @@ export default function animeForm({
     onAddAnime(newAnime);
 
     console.log(formData);
-    setFormData({ titre: "", genre: "", episode: "", statut: "", cover: "" });
+    setFormData({
+      id: "",
+      titre: "",
+      genre: "",
+      episode: "",
+      statut: "",
+      cover: "",
+    });
     alert("your data has been submitted successfully");
   };
 

@@ -20,12 +20,16 @@ export default function App() {
     setAnimes((prev) => [...prev, newAnime]);
   };
 
+  function handleDeleteAnime(id) {
+    setAnimes((prev) => prev.filter((anime) => anime.id !== id));
+  }
+
   return (
     <div className="thePage">
       <Banner />
       <div className="body">
         <div className="animecard">
-          <AnimeCard animes={filterAnime} />
+          <AnimeCard animes={filterAnime} onDelete={handleDeleteAnime} />
         </div>
         <div className="functions">
           <AnimeForm

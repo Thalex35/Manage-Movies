@@ -15,3 +15,14 @@ img {
 .before {
   font-weight: bold;
 }
+
+.card-header {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.btn_update {
+  padding: 5px 10px 5px 10px;
+}
