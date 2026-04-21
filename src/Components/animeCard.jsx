@@ -1,7 +1,7 @@
 import "./animeCard.css";
 import AnimeList from "./animeList.jsx";
 
-export default function AnimeCard({ animes, onDelete }) {
+export default function AnimeCard({ animes, onDelete, onEdit }) {
   return (
     <div>
       <div className="cards">
@@ -15,6 +15,7 @@ export default function AnimeCard({ animes, onDelete }) {
             episodes={anime.episodes}
             statut={anime.statut}
             onDelete={onDelete}
+            onEdit={onEdit}
           />
         ))}
       </div>
