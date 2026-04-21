@@ -1,5 +1,6 @@
 import "./animeList.css";
 import DeleteAnime from "./DeleteAnime";
+import EditAnime from "./EditAnime";
 
 // import { Edit } from "lucide-react";
 import defaultCover from "../assets/allanime.jpeg";
@@ -12,6 +13,7 @@ export default function AnimeList({
   episodes,
   cover,
   onDelete,
+  onEdit,
 }) {
   return (
     <section className="card">
@@ -30,6 +32,7 @@ export default function AnimeList({
         </p>
         <div className="card-header">
           <DeleteAnime id={id} onDelete={onDelete} />
+          <EditAnime anime={id} onEdit={onEdit} />
         </div>
       </div>
     </section>

@@ -5,6 +5,10 @@ import { nanoid } from "nanoid";
 export default function animeForm({
   data,
   onAddAnime,
+  editId,
+  tempData,
+  onSavedEdit,
+  onCancelEdit,
   selectedGenre,
   onGenreChange,
   selectedStatut,
@@ -18,6 +22,21 @@ export default function animeForm({
     statut: "",
     cover: "",
   });
+
+  useEffect(() => {
+    if (editId) {
+      setFormData(tempData);
+    } else {
+      setFormData({
+        id: "",
+        titre: "",
+        genre: "",
+        episode: "",
+        statut: "",
+        cover: "",
+      });
+    }
+  }, [editId, tempData]);
 
   const handleChange = (event) => {
     setFormData((previous) => ({
@@ -42,7 +61,7 @@ export default function animeForm({
     event.preventDefault();
 
     const newAnime = {
-      id: nanoid(),
+      id: editId || nanoid(),
       cover: formData.cover,
       titre: formData.titre,
       genre: formData.genre,
@@ -50,7 +69,11 @@ export default function animeForm({
       statut: formData.statut,
     };
 
-    onAddAnime(newAnime);
+    if (editId) {
+      onSavedEdit(newAnime);
+    } else {
+      onAddAnime(newAnime);
+    }
 
     console.log(formData);
     setFormData({
@@ -103,9 +126,8 @@ export default function animeForm({
       </div>
 
       <form onSubmit={handleSubmit}>
-        <h2>Ajouter un nouveau anime </h2>
+        <h2>{editId ? "Modifier un anime" : "Ajouter un nouveau anime"}</h2>
         <div className="inputs">
-          <label htmlFor="">TITRE</label>
           <input
             type="text"
             placeholder="Son titre..."
@@ -154,7 +176,6 @@ export default function animeForm({
               type="file"
               accept="image/*"
               style={{ display: "none" }}
-              required
               onChange={handleCoverChange}
             />
             <label className="import" htmlFor="inputfile">
@@ -163,9 +184,16 @@ export default function animeForm({
           </div>
           <br />
         </div>
-        <button className="btnAdd" type="submit">
-          + Ajoutez
-        </button>
+        <div className="myButton">
+          <button className="btnAdd" type="submit">
+            {editId ? "Modifier" : "Ajouter"}
+          </button>
+          {editId && (
+            <button className="btnCancel" type="button" onClick={onCancelEdit}>
+              Annuler
+            </button>
+          )}
+        </div>
       </form>
     </div>
   );
