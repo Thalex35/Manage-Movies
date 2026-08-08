@@ -2,14 +2,14 @@ import { Trash } from "lucide-react";
 
 export default function DeleteAnime({ id, onDelete }) {
   function handleDelete() {
-    onDelete(id);
+    if (window.confirm("Voulez-vous vraiment supprimer cet anime ?")) {
+      onDelete(id);
+    }
   }
 
   return (
-    <div>
-      <button>
-        <Trash size={20} color="#3a3a3a" onClick={handleDelete} />
-      </button>
-    </div>
+    <button className="action-button delete-button" type="button" aria-label="Supprimer cet anime" onClick={handleDelete}>
+      <Trash size={20} />
+    </button>
   );
 }
