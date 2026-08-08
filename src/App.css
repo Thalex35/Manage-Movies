@@ -1,14 +1,11 @@
-.body {
-  display: flex;
-  flex-direction: row-reverse;
-  gap: 30px;
-  width: 100%;
-}
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
 
-.animecard {
-  width: 75%;
-}
-
-.functions {
-  width: 25%;
-}
+:root { color: #f7f4ed; background: #0c1020; font-family: 'DM Sans', sans-serif; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; min-height: 100vh; background: radial-gradient(circle at 15% 0%, #2b2456 0, transparent 32rem), radial-gradient(circle at 95% 20%, #123f4b 0, transparent 28rem), #0c1020; }
+button, input, select { font: inherit; }
+.thePage { min-height: 100vh; padding: 0 5vw 4rem; }
+.body { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 2rem; align-items: start; }
+.animecard { min-width: 0; }
+.functions { position: sticky; top: 1.5rem; }
+@media (max-width: 900px) { .thePage { padding: 0 1.25rem 3rem; } .body { grid-template-columns: 1fr; } .functions { position: static; } }
